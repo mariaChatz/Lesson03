@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button button;
     private TextView textView;
-    private int numTimesClicked=0;
+    private static int numTimesClicked=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         Log.d(LOG_TAG,"onSaveInstanceState");
+        outState.putString("MainActivity_textView",textView.getText().toString());
     }
 
     @Override
@@ -77,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         Log.d(LOG_TAG,"onRestoreInstanceState");
+        String savedText = savedInstanceState.getString("MainActivity_textView");
+        textView.setText(savedText);
     }
 
     @Override
